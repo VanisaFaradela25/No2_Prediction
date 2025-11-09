@@ -557,63 +557,93 @@ Note: you may need to restart the kernel to use updated packages.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">26</span>
-<span class="g g-Whitespace">     </span><span class="mi">24</span> <span class="n">file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span> <span class="n">file_name</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">25</span> <span class="k">if</span> <span class="n">file_path</span><span class="o">.</span><span class="n">endswith</span><span class="p">((</span><span class="s1">&#39;.wav&#39;</span><span class="p">,</span> <span class="s1">&#39;.mp3&#39;</span><span class="p">,</span> <span class="s1">&#39;.flac&#39;</span><span class="p">)):</span>
-<span class="ne">---&gt; </span><span class="mi">26</span>     <span class="n">features</span> <span class="o">=</span> <span class="n">extract_features</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">27</span>     <span class="k">if</span> <span class="n">features</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">28</span>         <span class="n">features</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">label</span>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-<span class="nn">Cell In[3], line 5,</span> in <span class="ni">extract_features</span><span class="nt">(file_path)</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="k">def</span><span class="w"> </span><span class="nf">extract_features</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="k">try</span><span class="p">:</span>
-<span class="ne">----&gt; </span><span class="mi">5</span>         <span class="n">y</span><span class="p">,</span> <span class="n">sr</span> <span class="o">=</span> <span class="n">librosa</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">sr</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span>         <span class="n">features</span> <span class="o">=</span> <span class="p">{</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span>             <span class="s1">&#39;mean&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y</span><span class="p">),</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span>             <span class="s1">&#39;std&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">y</span><span class="p">),</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>     <span class="mi">13</span>             <span class="s1">&#39;zcr&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">librosa</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">zero_crossing_rate</span><span class="p">(</span><span class="n">y</span><span class="p">)),</span>
-<span class="g g-Whitespace">     </span><span class="mi">14</span>         <span class="p">}</span>
-<span class="g g-Whitespace">     </span><span class="mi">15</span>         <span class="k">return</span> <span class="n">features</span>
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
 
-<span class="nn">File ~\AppData\Local\Programs\Python\Python313\Lib\site-packages\librosa\core\audio.py:176,</span> in <span class="ni">load</span><span class="nt">(path, sr, mono, offset, duration, dtype, res_type)</span>
-<span class="g g-Whitespace">    </span><span class="mi">173</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">174</span>     <span class="c1"># Otherwise try soundfile first, and then fall back if necessary</span>
-<span class="g g-Whitespace">    </span><span class="mi">175</span>     <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">176</span>         <span class="n">y</span><span class="p">,</span> <span class="n">sr_native</span> <span class="o">=</span> <span class="n">__soundfile_load</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">offset</span><span class="p">,</span> <span class="n">duration</span><span class="p">,</span> <span class="n">dtype</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">178</span>     <span class="k">except</span> <span class="n">sf</span><span class="o">.</span><span class="n">SoundFileRuntimeError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">179</span>         <span class="c1"># If soundfile failed, try audioread instead</span>
-<span class="g g-Whitespace">    </span><span class="mi">180</span>         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">PurePath</span><span class="p">)):</span>
-
-<span class="nn">File ~\AppData\Local\Programs\Python\Python313\Lib\site-packages\librosa\core\audio.py:209,</span> in <span class="ni">__soundfile_load</span><span class="nt">(path, offset, duration, dtype)</span>
-<span class="g g-Whitespace">    </span><span class="mi">206</span>     <span class="n">context</span> <span class="o">=</span> <span class="n">path</span>
-<span class="g g-Whitespace">    </span><span class="mi">207</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">208</span>     <span class="c1"># Otherwise, create the soundfile object</span>
-<span class="ne">--&gt; </span><span class="mi">209</span>     <span class="n">context</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">SoundFile</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">211</span> <span class="k">with</span> <span class="n">context</span> <span class="k">as</span> <span class="n">sf_desc</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">212</span>     <span class="n">sr_native</span> <span class="o">=</span> <span class="n">sf_desc</span><span class="o">.</span><span class="n">samplerate</span>
-
-<span class="nn">File ~\AppData\Local\Programs\Python\Python313\Lib\site-packages\soundfile.py:690,</span> in <span class="ni">SoundFile.__init__</span><span class="nt">(self, file, mode, samplerate, channels, subtype, endian, format, closefd, compression_level, bitrate_mode)</span>
-<span class="g g-Whitespace">    </span><span class="mi">687</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bitrate_mode</span> <span class="o">=</span> <span class="n">bitrate_mode</span>
-<span class="g g-Whitespace">    </span><span class="mi">688</span> <span class="bp">self</span><span class="o">.</span><span class="n">_info</span> <span class="o">=</span> <span class="n">_create_info_struct</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="n">samplerate</span><span class="p">,</span> <span class="n">channels</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">689</span>                                  <span class="nb">format</span><span class="p">,</span> <span class="n">subtype</span><span class="p">,</span> <span class="n">endian</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">690</span> <span class="bp">self</span><span class="o">.</span><span class="n">_file</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">mode_int</span><span class="p">,</span> <span class="n">closefd</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">691</span> <span class="k">if</span> <span class="nb">set</span><span class="p">(</span><span class="n">mode</span><span class="p">)</span><span class="o">.</span><span class="n">issuperset</span><span class="p">(</span><span class="s1">&#39;r+&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">seekable</span><span class="p">():</span>
-<span class="g g-Whitespace">    </span><span class="mi">692</span>     <span class="c1"># Move write position to 0 (like in Python file objects)</span>
-<span class="g g-Whitespace">    </span><span class="mi">693</span>     <span class="bp">self</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-
-<span class="nn">File ~\AppData\Local\Programs\Python\Python313\Lib\site-packages\soundfile.py:1254,</span> in <span class="ni">SoundFile._open</span><span class="nt">(self, file, mode_int, closefd)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1252</span>         <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1253</span>             <span class="n">file</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">_sys</span><span class="o">.</span><span class="n">getfilesystemencoding</span><span class="p">())</span>
-<span class="ne">-&gt; </span><span class="mi">1254</span>     <span class="n">file_ptr</span> <span class="o">=</span> <span class="n">openfunction</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">mode_int</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_info</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1255</span> <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">1256</span>     <span class="n">file_ptr</span> <span class="o">=</span> <span class="n">_snd</span><span class="o">.</span><span class="n">sf_open_fd</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">mode_int</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_info</span><span class="p">,</span> <span class="n">closefd</span><span class="p">)</span>
-
-<span class="ne">KeyboardInterrupt</span>: 
-</pre></div>
-</div>
-</div>
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>mean</th>
+      <th>std</th>
+      <th>min</th>
+      <th>max</th>
+      <th>median</th>
+      <th>rms</th>
+      <th>zcr</th>
+      <th>label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.000143</td>
+      <td>0.194289</td>
+      <td>-1.000000</td>
+      <td>0.999969</td>
+      <td>0.002319</td>
+      <td>0.166674</td>
+      <td>0.010550</td>
+      <td>open</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-0.000013</td>
+      <td>0.074108</td>
+      <td>-0.130035</td>
+      <td>0.136414</td>
+      <td>-0.003891</td>
+      <td>0.073556</td>
+      <td>0.002701</td>
+      <td>open</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.004573</td>
+      <td>0.186907</td>
+      <td>-1.000000</td>
+      <td>0.999969</td>
+      <td>0.000366</td>
+      <td>0.152650</td>
+      <td>0.007418</td>
+      <td>open</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.004573</td>
+      <td>0.186907</td>
+      <td>-1.000000</td>
+      <td>0.999969</td>
+      <td>0.000366</td>
+      <td>0.152650</td>
+      <td>0.007418</td>
+      <td>open</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.000143</td>
+      <td>0.194289</td>
+      <td>-1.000000</td>
+      <td>0.999969</td>
+      <td>0.002319</td>
+      <td>0.166674</td>
+      <td>0.010550</td>
+      <td>open</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -653,7 +683,7 @@ close    1000
 Name: count, dtype: int64
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\vanisa\AppData\Local\Temp\ipykernel_2588\385016398.py:5: FutureWarning: 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\vanisa\AppData\Local\Temp\ipykernel_15212\385016398.py:5: FutureWarning: 
 
 Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
 
@@ -1073,6 +1103,60 @@ weighted avg       1.00      1.00      1.00       400
     <span class="n">st</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hasil Prediksi: **</span><span class="si">{</span><span class="n">prediction</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2">**&quot;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="n">st</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Silakan unggah file audio untuk memulai prediksi.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-11-10 00:09:14.311 WARNING streamlit.runtime.scriptrunner_utils.script_run_context: Thread &#39;MainThread&#39;: missing ScriptRunContext! This warning can be ignored when running in bare mode.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-11-10 00:09:14.441 
+  <span class=" -Color -Color-Bold -Color-Bold-Yellow">Warning:</span> to view this Streamlit app on a browser, run it with the following
+  command:
+
+    streamlit run C:\Users\vanisa\AppData\Roaming\Python\Python313\site-packages\ipykernel_launcher.py [ARGUMENTS]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-11-10 00:09:14.442 Thread &#39;MainThread&#39;: missing ScriptRunContext! This warning can be ignored when running in bare mode.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-11-10 00:09:14.443 Thread &#39;MainThread&#39;: missing ScriptRunContext! This warning can be ignored when running in bare mode.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-11-10 00:09:14.444 Thread &#39;MainThread&#39;: missing ScriptRunContext! This warning can be ignored when running in bare mode.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-11-10 00:09:14.444 Thread &#39;MainThread&#39;: missing ScriptRunContext! This warning can be ignored when running in bare mode.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-11-10 00:09:14.445 Thread &#39;MainThread&#39;: missing ScriptRunContext! This warning can be ignored when running in bare mode.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-11-10 00:09:14.446 Thread &#39;MainThread&#39;: missing ScriptRunContext! This warning can be ignored when running in bare mode.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-11-10 00:09:14.446 Thread &#39;MainThread&#39;: missing ScriptRunContext! This warning can be ignored when running in bare mode.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-11-10 00:09:14.447 Thread &#39;MainThread&#39;: missing ScriptRunContext! This warning can be ignored when running in bare mode.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-11-10 00:09:14.448 Thread &#39;MainThread&#39;: missing ScriptRunContext! This warning can be ignored when running in bare mode.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-11-10 00:09:14.449 Thread &#39;MainThread&#39;: missing ScriptRunContext! This warning can be ignored when running in bare mode.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-11-10 00:09:14.450 Thread &#39;MainThread&#39;: missing ScriptRunContext! This warning can be ignored when running in bare mode.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-11-10 00:09:14.451 Thread &#39;MainThread&#39;: missing ScriptRunContext! This warning can be ignored when running in bare mode.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-11-10 00:09:14.452 Thread &#39;MainThread&#39;: missing ScriptRunContext! This warning can be ignored when running in bare mode.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-11-10 00:09:14.453 Thread &#39;MainThread&#39;: missing ScriptRunContext! This warning can be ignored when running in bare mode.
 </pre></div>
 </div>
 </div>
